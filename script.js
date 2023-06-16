@@ -1,12 +1,31 @@
 function getComputerChoice() {
     let result = 100 * Math.random();
     if (result <= 33) {
-        return "Rock";
+        return "rock";
     }
     else if (result <= 66) {
-        return "Paper";
+        return "paper";
     }
     else {
-        return "Scissors";
+        return "scissors";
     }
 }
+
+function getPlayerChoice() {
+    let input = "";
+    let result = "";
+    while (true) {
+      input = prompt("Please choose Rock, Paper, or Scissors");
+      result = input.toLowerCase();
+      if (
+        result == "rock" ||
+        result == "paper" ||
+        result == "scissors") {
+            break;
+        }
+    }
+    return result;
+}
+
+let computerSelection = getComputerChoice();
+let playerSelection = getPlayerChoice();
