@@ -27,5 +27,41 @@ function getPlayerChoice() {
     return result;
 }
 
-let computerSelection = getComputerChoice();
-let playerSelection = getPlayerChoice();
+function playRPS(player1, player2) {
+    switch (player1) {
+        case "rock":
+            if (player2 == "rock") {
+                return "You Tie! You both chose Rock!";
+            }
+            else if (player2 == "paper") {
+                return "You Lose! Paper beats Rock!";
+            }
+            else {
+                return "You Win! Rock beats Scissors!";
+            }
+        case "paper":
+            if (player2 == "rock") {
+                return "You Win! Paper beats Rock!";
+            }
+            else if (player2 == "paper") {
+                return "You Tie! You both chose Paper!";
+            }
+            else {
+                return "You Lose! Scissors beats Paper!";
+            }
+        case "scissors":
+            if (player2 == "rock") {
+                return "You Lose! Rock beats Scissors!";
+            }
+            else if (player2 == "paper") {
+                return "You win! Scissors beats Paper!";
+            }
+            else {
+                return "You tie! You both chose Scissors!"
+            }
+    }
+}
+
+const computerSelection = getComputerChoice();
+const playerSelection = getPlayerChoice();
+console.log(playRPS(playerSelection, computerSelection));
