@@ -62,6 +62,30 @@ function playRPS(player1, player2) {
     }
 }
 
-const computerSelection = getComputerChoice();
-const playerSelection = getPlayerChoice();
-console.log(playRPS(playerSelection, computerSelection));
+function game() {
+    playerScore = 0;
+    computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        const computerSelection = getComputerChoice();
+        const playerSelection = getPlayerChoice();
+        const roundResult = playRPS(playerSelection, computerSelection);
+        console.log(roundResult);
+        if (roundResult.indexOf("You Win") > -1) {
+            playerScore += 1;
+        }
+        else if (roundResult.indexOf("You Lose") > -1) {
+            computerScore += 1;
+        }
+    }
+    if (playerScore > computerScore) {
+        console.log(`You won the most rounds! The score was ${playerScore} to ${computerScore}!`);
+    }
+    if (playerScore < computerScore) {
+        console.log(`The computer won the most rounds! The score was ${computerScore} to ${playerScore}!`);
+    }
+    else {
+        console.log(`You tied the computer after 5 rounds! The score was ${playerScore} to ${computerScore}`);
+    }
+}
+
+game();
