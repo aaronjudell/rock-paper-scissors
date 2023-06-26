@@ -28,40 +28,57 @@ function getPlayerChoice() {
 }
 
 function playRPS(player1, player2) {
+    statement.innerText = "";
+    score.innerText = "";
     switch (player1) {
         case "rock":
             if (player2 == "rock") {
-                return "You Tie! You both chose Rock!";
+                statement.innerText = "You Tie! You both chose Rock!";
+                return;
             }
             else if (player2 == "paper") {
-                return "You Lose! Paper beats Rock!";
+                computerScore += 1;
+                statement.innerText =  "You Lose! Paper beats Rock!";
+                return;
             }
             else {
-                return "You Win! Rock beats Scissors!";
+                playerScore += 1;
+                statement.innerText =  "You Win! Rock beats Scissors!";
+                return;
             }
         case "paper":
             if (player2 == "rock") {
-                return "You Win! Paper beats Rock!";
+                playerScore += 1;
+                statement.innerText =  "You Win! Paper beats Rock!";
+                return;
             }
             else if (player2 == "paper") {
-                return "You Tie! You both chose Paper!";
+                statement.innerText =  "You Tie! You both chose Paper!";
+                return;
             }
             else {
-                return "You Lose! Scissors beats Paper!";
+                computerScore += 1;
+                statement.innerText =  "You Lose! Scissors beats Paper!";
+                return;
             }
         case "scissors":
             if (player2 == "rock") {
-                return "You Lose! Rock beats Scissors!";
+                computerScore += 1;
+                statement.innerText = "You Lose! Rock beats Scissors!";
+                return;
             }
             else if (player2 == "paper") {
-                return "You win! Scissors beats Paper!";
+                playerScore += 1;
+                statement.innerText = "You win! Scissors beats Paper!";
+                return;
             }
             else {
-                return "You tie! You both chose Scissors!"
+                statement.innerText = "You tie! You both chose Scissors!"
+                return;
             }
     }
 }
-
+/*
 function game() {
     playerScore = 0;
     computerScore = 0;
@@ -87,5 +104,32 @@ function game() {
         console.log(`You tied the computer after 5 rounds! The score was ${playerScore} to ${computerScore}`);
     }
 }
+*/
 
-game();
+function displayScore() {
+    score.innerText += `Player Score: ${playerScore} Computer Score: ${computerScore}`;
+}
+
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const statement = document.getElementById("statement");
+const score = document.getElementById("score");
+
+let playerScore = 0;
+let computerScore = 0;
+
+rock.addEventListener("click", () => {
+    playRPS("rock", getComputerChoice());
+    displayScore();
+});
+
+paper.addEventListener("click", () => {
+    playRPS("paper", getComputerChoice());
+    displayScore();
+});
+
+scissors.addEventListener("click", () => {
+    playRPS("scissors", getComputerChoice())
+    displayScore();
+});
