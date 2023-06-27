@@ -84,13 +84,15 @@ function displayScore() {
         choices.removeChild(rock);
         choices.removeChild(paper);
         choices.removeChild(scissors);
-        score.innerHTML = `<h2>You WON the game! Final score: ${playerScore} to ${computerScore}</h2>`;
+        score.innerText = '';
+        choices.innerHTML = `<h2>You WON the game! Final score: ${playerScore} to ${computerScore}</h2>`;
     }
     else if (computerScore >= 5) {
         choices.removeChild(rock);
         choices.removeChild(paper);
         choices.removeChild(scissors);
-        score.innerHTML = `<h2>You LOST the game! :( Final score: ${computerScore} to ${playerScore}</h2>`;
+        score.innerText = '';
+        choices.innerHTML = `<h2>You LOST the game! :( Final score: ${computerScore} to ${playerScore}</h2>`;
     }
     else {
         score.innerText += `Player Score: ${playerScore} Computer Score: ${computerScore}`;
