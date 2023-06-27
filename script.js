@@ -33,51 +33,96 @@ function playRPS(player1, player2) {
     switch (player1) {
         case "rock":
             if (player2 == "rock") {
-                statement.innerText = "You Tie! You both chose Rock!";
+                statement.innerText = "You tied this round! You both chose Rock!";
                 return;
             }
             else if (player2 == "paper") {
                 computerScore += 1;
-                statement.innerText =  "You Lose! Paper beats Rock!";
+                statement.innerText =  "You lost this round! Paper beats Rock!";
                 return;
             }
             else {
                 playerScore += 1;
-                statement.innerText =  "You Win! Rock beats Scissors!";
+                statement.innerText =  "You won this round! Rock beats Scissors!";
                 return;
             }
         case "paper":
             if (player2 == "rock") {
                 playerScore += 1;
-                statement.innerText =  "You Win! Paper beats Rock!";
+                statement.innerText =  "You won this round! Paper beats Rock!";
                 return;
             }
             else if (player2 == "paper") {
-                statement.innerText =  "You Tie! You both chose Paper!";
+                statement.innerText =  "You tied this round! You both chose Paper!";
                 return;
             }
             else {
                 computerScore += 1;
-                statement.innerText =  "You Lose! Scissors beats Paper!";
+                statement.innerText =  "You lost this round! Scissors beats Paper!";
                 return;
             }
         case "scissors":
             if (player2 == "rock") {
                 computerScore += 1;
-                statement.innerText = "You Lose! Rock beats Scissors!";
+                statement.innerText = "You lost this round! Rock beats Scissors!";
                 return;
             }
             else if (player2 == "paper") {
                 playerScore += 1;
-                statement.innerText = "You win! Scissors beats Paper!";
+                statement.innerText = "You won this round! Scissors beats Paper!";
                 return;
             }
             else {
-                statement.innerText = "You tie! You both chose Scissors!"
+                statement.innerText = "You tied this round! You both chose Scissors!"
                 return;
             }
     }
 }
+
+function displayScore() {
+    if (playerScore >= 5) {
+        choices.removeChild(rock);
+        choices.removeChild(paper);
+        choices.removeChild(scissors);
+        score.innerHTML = `<h2>You WON the game! Final score: ${playerScore} to ${computerScore}</h2>`;
+    }
+    else if (computerScore >= 5) {
+        choices.removeChild(rock);
+        choices.removeChild(paper);
+        choices.removeChild(scissors);
+        score.innerHTML = `<h2>You LOST the game! :( Final score: ${computerScore} to ${playerScore}</h2>`;
+    }
+    else {
+        score.innerText += `Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    }
+}
+
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const statement = document.getElementById("statement");
+const score = document.getElementById("score");
+const choices = document.getElementById("choices");
+
+let playerScore = 0;
+let computerScore = 0;
+
+rock.addEventListener("click", () => {
+    playRPS("rock", getComputerChoice());
+    displayScore();
+});
+
+paper.addEventListener("click", () => {
+    playRPS("paper", getComputerChoice());
+    displayScore();
+});
+
+scissors.addEventListener("click", () => {
+    playRPS("scissors", getComputerChoice())
+    displayScore();
+});
+
+
 /*
 function game() {
     playerScore = 0;
@@ -105,31 +150,3 @@ function game() {
     }
 }
 */
-
-function displayScore() {
-    score.innerText += `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-}
-
-const rock = document.getElementById("rock");
-const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors");
-const statement = document.getElementById("statement");
-const score = document.getElementById("score");
-
-let playerScore = 0;
-let computerScore = 0;
-
-rock.addEventListener("click", () => {
-    playRPS("rock", getComputerChoice());
-    displayScore();
-});
-
-paper.addEventListener("click", () => {
-    playRPS("paper", getComputerChoice());
-    displayScore();
-});
-
-scissors.addEventListener("click", () => {
-    playRPS("scissors", getComputerChoice())
-    displayScore();
-});
