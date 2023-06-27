@@ -41,7 +41,11 @@ body {
 }
 
 .button {
+    background-color: #3882F6;
+    color: white;
+    border-radius: 10px;
     margin: 0 100px;
+    padding: 5px 20px;
 }
 
 #choices h2 {
